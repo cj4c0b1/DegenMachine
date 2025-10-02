@@ -1,6 +1,6 @@
 """
 --------------------------------------------------OKX CONTROL-----------------------------------------------------------
-    Выберите сети/суммы для вывода и ввода с OKX. Не забудьте вставить API ключи снизу.
+    Select networks/amounts for OKX withdrawals and deposits. Don't forget to insert your API keys below.
 
     1 - ETH-ERC20              9  - CELO-Celo           17 - KLAY-Klaytn        26 - USDT-Arbitrum One
     2 - ETH-Arbitrum One       10 - ONE-Harmony         18 - FTM-Fantom         27 - USDC-ERC20
@@ -14,27 +14,27 @@
 
 ------------------------------------------------------------------------------------------------------------------------
 """
-OKX_WITHDRAW_NETWORK = 22      # Сеть вывода из OKX
-OKX_WITHDRAW_AMOUNT = (1, 1)   # (минимальная, максимальная) сумма для вывода из OKX (кол-во)
+OKX_WITHDRAW_NETWORK = 22      # Withdrawal network from OKX
+OKX_WITHDRAW_AMOUNT = (1, 1)   # (min, max) amount for OKX withdrawal (quantity)
 
-OKX_MULTI_WITHDRAW = {  # Сеть вывода: (минимум, максимум) в токене для вывода (кол-во)
+OKX_MULTI_WITHDRAW = {  # Withdrawal network: (min, max) in token for withdrawal (quantity)
     9: (1, 1.011),
     4: (0.0001, 0.000111),
 }
 
-OKX_DEPOSIT_NETWORK = 32                  # Сеть из которой планируется пополнение OKX
-OKX_DEPOSIT_AMOUNT = ('100', '100')    # (минимальная, максимальная) сумма для пополнения OKX (% или кол-во)
+OKX_DEPOSIT_NETWORK = 32                  # Network for OKX deposit
+OKX_DEPOSIT_AMOUNT = ('100', '100')    # (min, max) amount for OKX deposit (% or quantity)
 
 """
 ------------------------------------------------BRIDGE CONTROL----------------------------------------------------------
-    Проверьте руками, работает ли сеть на сайте. (Софт сам проверит, но зачем его напрягать?)
-    Софт работает только с нативным токеном(ETH). Не забудьте вставить API ключ для LayerSwap.
-    Для каждого моста поддерживается уникальная настройка
+    Please verify manually if the network is working on the website. (The software will check, but why stress it?)
+    The software works only with the native token (ETH). Don't forget to insert your LayerSwap API key.
+    Each bridge supports unique configuration
     
-    Можно указать минимальную/максимальную сумму или минимальный/максимальный % от баланса
+    You can specify min/max amount or min/max % of balance
     
-    Количество - (0.01, 0.02)
-    Процент    - ("10", "20") ⚠️ Значения в скобках
+    Amount - (0.01, 0.02)
+    Percentage - ("10", "20") ⚠️ Values in brackets
        
      (A)Arbitrum = 1                    Polygon ZKEVM = 10 
         Arbitrum Nova = 2            (A)zkSync Era = 11     
@@ -47,15 +47,15 @@ OKX_DEPOSIT_AMOUNT = ('100', '100')    # (минимальная, максима
         Starknet = 9                   *Mantle = 29
                                         ZKFair = 45   
     
-    * - не поддерживается в Rhino.fi
-    (A) - сети, поддерживаемые Across мостом
-    (0) - поддерживается только для Orbiter моста
-    ORBITER_CHAIN_ID_FROM(TO) = [2, 4, 16] | Одна из сетей будет выбрана
+    * - not supported in Rhino.fi
+    (A) - networks supported by Across bridge
+    (0) - supported only for Orbiter bridge
+    ORBITER_CHAIN_ID_FROM(TO) = [2, 4, 16] | One of the networks will be selected
 """
 
-ORBITER_CHAIN_ID_FROM = [7]                # Исходящая сеть
-ORBITER_CHAIN_ID_TO = [45]                  # Входящая сеть
-ORBITER_DEPOSIT_AMOUNT = (1, 1)          # (минимум, максимум) (% или кол-во)
+ORBITER_CHAIN_ID_FROM = [7]                # Source network
+ORBITER_CHAIN_ID_TO = [45]                # Destination network
+ORBITER_DEPOSIT_AMOUNT = (1, 1)          # (min, max) (% or quantity)
 ORBITER_TOKEN_NAME = 'USDC'
 
 LAYERSWAP_CHAIN_ID_FROM = [1]                # Исходящая сеть
@@ -63,17 +63,17 @@ LAYERSWAP_CHAIN_ID_TO = [4]                  # Входящая сеть
 LAYERSWAP_DEPOSIT_AMOUNT = (0.002, 0.002)    # (минимум, максимум) (% или кол-во)
 
 RHINO_CHAIN_ID_FROM = [1]                # Исходящая сеть
-RHINO_CHAIN_ID_TO = [11]                  # Входящая сеть
-RHINO_DEPOSIT_AMOUNT = (0.012, 0.022)    # (минимум, максимум) (% или кол-во)
+RHINO_CHAIN_ID_TO = [11]                  # Destination network
+RHINO_DEPOSIT_AMOUNT = (0.012, 0.022)    # (min, max) (% or quantity)
 
-ACROSS_CHAIN_ID_FROM = [9]                # Исходящая сеть
-ACROSS_CHAIN_ID_TO = [4]                  # Входящая сеть
-ACROSS_DEPOSIT_AMOUNT = (0.002, 0.002)    # (минимум, максимум) (% или кол-во)
+ACROSS_CHAIN_ID_FROM = [9]                # Source network
+ACROSS_CHAIN_ID_TO = [4]                  # Destination network
+ACROSS_DEPOSIT_AMOUNT = (0.002, 0.002)    # (min, max) (% or quantity)
 
 """
 --------------------------------------------------DEGEN SETTINGS--------------------------------------------------------
     
-    Поддерживаемые сети для работы модулей. Перед настройкой, проверьте работает ли сайт с указанной сетью!
+    Supported networks for module operation. Before configuration, check if the website works with the specified network!
     
         Arbitrum = 1                  Goerli = 16                        OKX = 30
         Arbitrum Nova = 2             Gnosis = 17                        Optimism = 31
@@ -116,29 +116,29 @@ ZKFAIR_CLAIM_REFUND_PHASES = [1, 2, 3, 4]  # фазы для клейма реф
 
     okx_withdraw                     # смотри OKX CONTROL
     okx_multi_withdraw               # вывод в несколько сетей. Смотри OKX CONTROL (OKX_MULTI_WITHDRAW)
-    collector_eth                    # сбор всех токенов в ETH
-    bridge_across                    # смотри BRIDGE CONTROL
-    bridge_rhino                     # смотри BRIDGE CONTROL
-    bridge_layerswap                 # смотри BRIDGE CONTROL
-    bridge_orbiter                   # смотри BRIDGE CONTROL
-    okx_deposit                      # ввод средств на биржу
-    okx_collect_from_sub             # сбор средств на субАккаунтов на основной счет
+    collector_eth                    # collect all tokens to ETH
+    bridge_across                    # see BRIDGE CONTROL
+    bridge_rhino                     # see BRIDGE CONTROL
+    bridge_layerswap                 # see BRIDGE CONTROL
+    bridge_orbiter                   # see BRIDGE CONTROL
+    okx_deposit                      # deposit funds to exchange
+    okx_collect_from_sub             # collect funds from sub-accounts to main account
     
 ---------------------------------------------------CUSTOM---------------------------------------------------------------        
     
-    mint_token_avnu                  # обмен щитка на AVNU. см. MEMCOIN_AMOUNT. Контракт менять в config.py -> TOKENS_PER_CHAIN
-    mint_scroll_nft                  # минт Scroll NFT за деплой контрактов
-    mint_inscription                 # минт инскрипшена в сети INSCRIPTION_NETWORK(номера из L0).
-    mint_orbiter_inscription         # минт инскрипшена на Orbiter см. INSCRIPTION_NETWORK, INSCRIPTION_NETWORK_ORBITER.
-    zksync_rhino_checker             # проверка на eligible для минта Rhino.fi Pro Hunter NFT 
-    zksync_rhino_mint                # минт Rhino.fi Hunter NFT
-    zksync_rhino_mint_pro            # проверка на eligible и минт Rhino.fi Pro Hunter NFT
-    claim_refund_zkfair              # клейм рефанда за участие в раздаче ZKFair. см. ZKFAIR_CLAIM_REFUND_PHASES
-    stake_zkfair                     # стейкинг токена ZKF в сети ZKFair. см. ZKFAIR_STAKE_PERIOD, ZKFAIR_STAKE_AMOUNT
+    mint_token_avnu                  # exchange shield for AVNU. see MEMCOIN_AMOUNT. Change contract in config.py -> TOKENS_PER_CHAIN
+    mint_scroll_nft                  # mint Scroll NFT for contract deployment
+    mint_inscription                 # mint inscription in INSCRIPTION_NETWORK (numbers from L0).
+    mint_orbiter_inscription         # mint inscription on Orbiter, see INSCRIPTION_NETWORK, INSCRIPTION_NETWORK_ORBITER.
+    zksync_rhino_checker             # check eligibility for Rhino.fi Pro Hunter NFT mint
+    zksync_rhino_mint                # mint Rhino.fi Hunter NFT
+    zksync_rhino_mint_pro            # check eligibility and mint Rhino.fi Pro Hunter NFT
+    claim_refund_zkfair              # claim refund for participating in ZKFair airdrop, see ZKFAIR_CLAIM_REFUND_PHASES
+    stake_zkfair                     # stake ZKF token on ZKFair network, see ZKFAIR_STAKE_PERIOD, ZKFAIR_STAKE_AMOUNT
 
-    Выберите необходимые модули для взаимодействия
-    Вы можете создать любой маршрут, софт отработает строго по нему. Для каждого списка будет выбран один модуль в
-    маршрут, если софт выберет None, то он пропустит данный список модулей. 
+    Select the necessary modules for interaction
+    You can create any route, the software will follow it strictly. For each list, one module will be selected for
+    the route. If the software selects None, it will skip that module list.
     Список модулей сверху.
     
     CLASSIC_ROUTES_MODULES_USING = [
