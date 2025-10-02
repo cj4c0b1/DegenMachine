@@ -58,11 +58,11 @@ ORBITER_CHAIN_ID_TO = [45]                # Destination network
 ORBITER_DEPOSIT_AMOUNT = (1, 1)          # (min, max) (% or quantity)
 ORBITER_TOKEN_NAME = 'USDC'
 
-LAYERSWAP_CHAIN_ID_FROM = [1]                # Исходящая сеть
-LAYERSWAP_CHAIN_ID_TO = [4]                  # Входящая сеть
-LAYERSWAP_DEPOSIT_AMOUNT = (0.002, 0.002)    # (минимум, максимум) (% или кол-во)
+LAYERSWAP_CHAIN_ID_FROM = [1]                # Source network
+LAYERSWAP_CHAIN_ID_TO = [4]                  # Destination network
+LAYERSWAP_DEPOSIT_AMOUNT = (0.002, 0.002)    # (min, max) (% or quantity)
 
-RHINO_CHAIN_ID_FROM = [1]                # Исходящая сеть
+RHINO_CHAIN_ID_FROM = [1]                # Source network
 RHINO_CHAIN_ID_TO = [11]                  # Destination network
 RHINO_DEPOSIT_AMOUNT = (0.012, 0.022)    # (min, max) (% or quantity)
 
@@ -91,22 +91,22 @@ ACROSS_DEPOSIT_AMOUNT = (0.002, 0.002)    # (min, max) (% or quantity)
         Fantom = 14                   Moonriver = 29                     zkSync = 43
         Fuse = 15                                                        Beam = 44
             
-    INSCRIPTION_DATA | Указывайте дату для минта. Обычно ее дают на сайтах. Поддерживаются форматы в виде json и hex.
-        В формате json - 'data....'
-        В формате hex - 0x123
-    INSCRIPTION_NETWORK | Сеть в которой планируется минтить инскрипшен. Поддерживаются все сети из OMNI-CHAIN CONTROL    
+    INSCRIPTION_DATA | Specify the data for minting. Usually provided on the websites. Supported formats are json and hex.
+        In json format - 'data....'
+        In hex format - 0x123
+    INSCRIPTION_NETWORK | Network where the inscription will be minted. All networks from OMNI-CHAIN CONTROL are supported.
     
-    MEMCOIN_AMOUNT | Сумма в ETH, на которую планируете покупать мемкоин.
+    MEMCOIN_AMOUNT | Amount in ETH you plan to spend on memcoin purchase.
 """
 INSCRIPTION_DATA = ''  # Json или Hex формат
-INSCRIPTION_NETWORK = 1  # сеть для минта Inscription (номера в DEGEN SETTINGS)
-INSCRIPTION_NETWORK_ORBITER = 7  # входящая сеть для Orbiter Inscription (номера в DEGEN SETTINGS)
+INSCRIPTION_NETWORK = 1  # network for Inscription mint (numbers from DEGEN SETTINGS)
+INSCRIPTION_NETWORK_ORBITER = 7  # destination network for Orbiter Inscription (numbers from DEGEN SETTINGS)
 
 MEMCOIN_AMOUNT = 0.01  # сумма в ETH
 
-ZKFAIR_STAKE_PERIOD = 90  # кол-во дней для стейкинга (месяц = 30)
-ZKFAIR_STAKE_AMOUNT = 50  # процент от баланса ZKF для стейкинга
-ZKFAIR_CLAIM_REFUND_PHASES = [1, 2, 3, 4]  # фазы для клейма рефаунда
+ZKFAIR_STAKE_PERIOD = 90  # number of days for staking (month = 30)
+ZKFAIR_STAKE_AMOUNT = 50  # percentage of ZKF balance for staking
+ZKFAIR_CLAIM_REFUND_PHASES = [1, 2, 3, 4]  # phases for refund claim
 
 
 """
@@ -114,8 +114,8 @@ ZKFAIR_CLAIM_REFUND_PHASES = [1, 2, 3, 4]  # фазы для клейма реф
 
 ---------------------------------------------------HELPERS--------------------------------------------------------------        
 
-    okx_withdraw                     # смотри OKX CONTROL
-    okx_multi_withdraw               # вывод в несколько сетей. Смотри OKX CONTROL (OKX_MULTI_WITHDRAW)
+    okx_withdraw                     # see OKX CONTROL
+    okx_multi_withdraw               # withdraw to multiple networks. See OKX CONTROL (OKX_MULTI_WITHDRAW)
     collector_eth                    # collect all tokens to ETH
     bridge_across                    # see BRIDGE CONTROL
     bridge_rhino                     # see BRIDGE CONTROL
@@ -139,7 +139,7 @@ ZKFAIR_CLAIM_REFUND_PHASES = [1, 2, 3, 4]  # фазы для клейма реф
     Select the necessary modules for interaction
     You can create any route, the software will follow it strictly. For each list, one module will be selected for
     the route. If the software selects None, it will skip that module list.
-    Список модулей сверху.
+    Module list is above.
     
     CLASSIC_ROUTES_MODULES_USING = [
         ['okx_withdraw'],
