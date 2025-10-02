@@ -14,6 +14,7 @@
 """
 AMOUNT_PERCENT = (55, 60)  # Used for swaps
 AMOUNT_PERCENT_WRAPS = (55, 60)  # Used for the wrap_abuser module
+LIQUIDITY_AMOUNT = (0.001, 0.002)  # Used for adding liquidity, deposits, and wrapping ETH
 TRANSFER_AMOUNT = ('99', '99')  # Used for transfers
 MIN_BALANCE = 0.001  # Amount of ETH in the account
 
@@ -47,7 +48,7 @@ MIN_BALANCE = 0.001  # Amount of ETH in the account
 GLOBAL_NETWORK = 11             # As of 26.12.2023 all networks from OMNI-CHAIN CONTROL are supported
 SOFTWARE_MODE = 0               # 0 - sequential launch / 1 - parallel launch
 ACCOUNTS_IN_STREAM = 1          # Only for SOFTWARE_MODE = 1 (parallel launch)
-{{ ... }}
+WALLETS_TO_WORK = 0             # 0 / 3 / 3, 20 / [3, 20]
 SHUFFLE_WALLETS = False         # Shuffles wallets before launch
 SHUFFLE_ROUTE = False           # Shuffles the route before launch
 BREAK_ROUTE = False             # Stops route execution if an error occurs
