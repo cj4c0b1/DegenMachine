@@ -41,11 +41,11 @@ python main.py
 > Original Developer's Donation Address
 
 ### `0x7B267EcEc11a07CA2a782E4b8a51558a70449e7c`
-> Maintainer's Donation Address (Cicero Jacobi)
+> Maintainer's Donation Address (j4c0b1)
 
 > Thank you for your support ❤️
 
 ## Credits
 
 - **Original Developer**: [Askaer](https://t.me/askaer) - Creator of DegenMachine
-- **Maintainer**: [Cicero Jacobi](https://github.com/cj4c0b1) - Project maintenance and updates
+- **Maintainer**: [j4c0b1](https://github.com/cj4c0b1) - Project maintenance and updates
