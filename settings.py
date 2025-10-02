@@ -98,7 +98,7 @@ ACROSS_DEPOSIT_AMOUNT = (0.002, 0.002)    # (min, max) (% or quantity)
     
     MEMCOIN_AMOUNT | Amount in ETH you plan to spend on memcoin purchase.
 """
-INSCRIPTION_DATA = ''  # Json или Hex формат
+INSCRIPTION_DATA = ''  # Formato Json ou Hex
 INSCRIPTION_NETWORK = 1  # network for Inscription mint (numbers from DEGEN SETTINGS)
 INSCRIPTION_NETWORK_ORBITER = 7  # destination network for Orbiter Inscription (numbers from DEGEN SETTINGS)
 
