@@ -1,41 +1,51 @@
-﻿
-## 🛠️Установка и запуск проекта
 
-> Устанавливая проект, вы принимаете риски использования софта для добывания денег(потерять жопу, деньги, девственность).
+## 🛠️ Project Setup and Launch
 
-Как только вы скачаете проект, **убедитесь**, что у вас Python 3.10.11
+> By installing this project, you accept the risks associated with using software for financial activities (potential loss of assets, funds, or other valuables).
 
-Установка проекта
+After downloading the project, **ensure** you have Python 3.10.11 installed.
 
-```bash
-  git clone https://github.com/realaskaer/DegenMachine.git
-```
-
-Для установки необходимых библиотек, пропишите в консоль
+### Project Installation
 
 ```bash
-  pip install -r requirements.txt
+git clone https://github.com/realaskaer/DegenMachine.git
 ```
 
-Запуск проекта
+To install the required libraries, run:
 
 ```bash
-  cd degenmachine
-  python main.py
+pip install -r requirements.txt
 ```
 
-## 🔗 Ссылки на установку Python и PyCharm
+### Running the Project
 
- - [Установка PyCharm](https://www.jetbrains.com/pycharm/download/?section=windows)
- - [Установка Python](https://www.python.org/downloads/windows/) (Вам нужна версия 3.10.11)
+```bash
+cd degenmachine
+python main.py
+```
 
-## ❔Куда писать свой вопрос?
+## 🔗 Python and PyCharm Installation Links
 
-- [@askaer.foundation](https://t.me/askaer) - мой канал в телеграм  
-- [@askaer.chat](https://t.me/askaerchat) - ответы на любой вопрос
-- [@askaer](https://t.me/realaskaer) - **при обнаружении бомбы в коде**  
+- [Install PyCharm](https://www.jetbrains.com/pycharm/download/?section=windows)
+- [Install Python](https://www.python.org/downloads/windows/) (You need version 3.10.11)
 
-## ❤️‍🔥Donate (Any EVM)
+## ❔ Where to Get Help?
+
+- [@askaer.foundation](https://t.me/askaer) - My Telegram channel  
+- [@askaer.chat](https://t.me/askaerchat) - Get answers to any question
+- [@askaer](https://t.me/realaskaer) - **For critical code issues**  
+
+## ❤️‍🔥 Donation (Any EVM)
 
 ### `0x000000a679C2FB345dDEfbaE3c42beE92c0Fb7A5`
-> Спасибо за поддержку❤️
+> Original Developer's Donation Address
+
+### `0x7B267EcEc11a07CA2a782E4b8a51558a70449e7c`
+> Maintainer's Donation Address (j4c0b1)
+
+> Thank you for your support ❤️
+
+## Credits
+
+- **Original Developer**: [Askaer](https://t.me/askaer) - Creator of DegenMachine
+- **Maintainer**: [j4c0b1](https://github.com/cj4c0b1) - Project maintenance and updates
