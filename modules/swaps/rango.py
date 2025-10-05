@@ -1,7 +1,12 @@
+import os
+from dotenv import load_dotenv
 from utils.tools import gas_checker, helper
 from config import TOKENS_PER_CHAIN, HELP_SOFTWARE
 from general_settings import SLIPPAGE, UNLIMITED_APPROVE
 from modules import Aggregator, Logger
+
+# Load environment variables
+load_dotenv()
 
 
 class Rango(Aggregator, Logger):
@@ -12,7 +17,10 @@ class Rango(Aggregator, Logger):
         self.network = self.client.network.name
 
     async def get_quote(self, from_token_address, to_token_address, from_token_name, to_token_name, amount):
-        api_key = 'ffde5b24-ee86-4f47-a1c8-b22d8f639a38'
+        api_key = os.getenv('RANGO_API_KEY')
+        if not api_key:
+            raise ValueError("RANGO_API_KEY not found in environment variables")
+            
         url = f'https://api.rango.exchange/routing/best?apiKey={api_key}'
 
         headers = {
