@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
-# Apply patches first
+# Load environment variables first
+import load_env
+
+# Apply patches
 import patch_parsimonious
 import patch_starkware
 

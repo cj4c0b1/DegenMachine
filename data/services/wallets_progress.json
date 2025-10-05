@@ -1,0 +1,10 @@
+{
+    "test_wallet_1": {
+        "current_step": 3,
+        "route": [
+            "swap_openocean",
+            "swap_openocean",
+            "swap_openocean"
+        ]
+    }
+}
