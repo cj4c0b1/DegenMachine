@@ -1,3 +1,6 @@
+import os
+
+
 class Network:
     def __init__(
             self,
@@ -59,7 +62,7 @@ ScrollRPC = Network(
 ArbitrumRPC = Network(
     name='Arbitrum',
     rpc=[
-        'https://rpc.ankr.com/arbitrum/',
+        f'https://rpc.ankr.com/arbitrum/{os.environ.get("ANKR_API_KEY") or ""}',
         'https://1rpc.io/arb',
         'https://arb1.arbitrum.io/rpc'
     ],
@@ -73,7 +76,7 @@ ArbitrumRPC = Network(
 OptimismRPC = Network(
     name='Optimism',
     rpc=[
-        'https://rpc.ankr.com/optimism/',
+        f'https://rpc.ankr.com/optimism/{os.environ.get("ANKR_API_KEY") or ""}',
         'https://optimism.drpc.org',
         'https://1rpc.io/op'
     ],
@@ -87,7 +90,7 @@ OptimismRPC = Network(
 PolygonRPC = Network(
     name='Polygon',
     rpc=[
-        'https://rpc.ankr.com/polygon',
+        f'https://rpc.ankr.com/polygon/{os.environ.get("ANKR_API_KEY") or ""}',
     ],
     chain_id=137,
     eip1559_support=False,
@@ -99,7 +102,7 @@ PolygonRPC = Network(
 AvalancheRPC = Network(
     name='Avalanche',
     rpc=[
-        'https://rpc.ankr.com/avalanche/',
+        f'https://rpc.ankr.com/avalanche/{os.environ.get("ANKR_API_KEY") or ""}',
         'https://1rpc.io/avax/c',
         'https://avax.meowrpc.com',
         'https://avalanche.drpc.org'
@@ -114,7 +117,7 @@ AvalancheRPC = Network(
 EthereumRPC = Network(
     name='Ethereum',
     rpc=[
-        'https://rpc.ankr.com/eth',
+        f'https://rpc.ankr.com/eth/{os.environ.get("ANKR_API_KEY") or ""}',
         'https://ethereum.publicnode.com',
         'https://rpc.mevblocker.io',
         'https://rpc.flashbots.net',
@@ -130,7 +133,7 @@ EthereumRPC = Network(
 Arbitrum_novaRPC = Network(
     name='Arbitrum Nova',
     rpc=[
-        'https://rpc.ankr.com/arbitrumnova',
+        f'https://rpc.ankr.com/arbitrumnova/{os.environ.get("ANKR_API_KEY") or ""}',
         'https://arbitrum-nova.publicnode.com',
         'https://arbitrum-nova.drpc.org',
         'https://nova.arbitrum.io/rpc'
@@ -144,7 +147,13 @@ Arbitrum_novaRPC = Network(
 BaseRPC = Network(
     name='Base',
     rpc=[
-        'https://mainnet.base.org',
+        f'https://rpc.ankr.com/base/{os.environ.get("ANKR_API_KEY") or ""}',
+        'https://mainnet.base.org',  # Primary: Official Base RPC
+        'https://base.llamarpc.com',  # Secondary: LlamaNodes
+        'https://base.drpc.org',     # Fallback: DRPC
+        'https://1rpc.io/base',      # Additional fallback
+        'https://base-pokt.nodies.app',  # Nodies RPC
+        'https://base.blockpi.network/v1/rpc/public',  # BlockPI RPC
     ],
     chain_id=8453,
     eip1559_support=True,
@@ -181,7 +190,7 @@ Polygon_ZKEVM_RPC = Network(
     rpc=[
         'https://1rpc.io/polygon/zkevm',
         'https://zkevm-rpc.com',
-        'https://rpc.ankr.com/polygon_zkevm'
+        f'https://rpc.ankr.com/polygon_zkevm/{os.environ.get("ANKR_API_KEY") or ""}'
     ],
     chain_id=1101,
     eip1559_support=False,
@@ -192,7 +201,7 @@ Polygon_ZKEVM_RPC = Network(
 BSC_RPC = Network(
     name='BNB Chain',
     rpc=[
-        'https://rpc.ankr.com/bsc',
+        f'https://rpc.ankr.com/bsc/{os.environ.get("ANKR_API_KEY") or ""}',
     ],
     chain_id=56,
     eip1559_support=False,
@@ -217,7 +226,7 @@ MantleRPC = Network(
         'https://mantle.publicnode.com',
         'https://mantle-mainnet.public.blastapi.io',
         'https://mantle.drpc.org',
-        'https://rpc.ankr.com/mantle',
+        f'https://rpc.ankr.com/mantle/{os.environ.get("ANKR_API_KEY") or ""}',
         'https://1rpc.io/mantle'
     ],
     chain_id=5000,
@@ -296,7 +305,7 @@ CeloRPC = Network(
     name='Celo',
     rpc=[
         'https://forno.celo.org',
-        'https://rpc.ankr.com/celo',
+        f'https://rpc.ankr.com/celo/{os.environ.get("ANKR_API_KEY") or ""}',
         'https://1rpc.io/celo',
     ],
     chain_id=42220,
@@ -321,7 +330,7 @@ CoreRPC = Network(
     name='CoreDAO',
     rpc=[
         'https://core.public.infstones.com',
-        'https://rpc.ankr.com/core',
+        f'https://rpc.ankr.com/core/{os.environ.get("ANKR_API_KEY") or ""}',
         'https://1rpc.io/core',
         'https://rpc.coredao.org',
     ],
@@ -370,7 +379,7 @@ OrderlyRPC = Network(
 HorizenRPC = Network(
     name='Horizen EON',
     rpc=[
-        'https://rpc.ankr.com/horizen_eon',
+        f'https://rpc.ankr.com/horizen_eon/{os.environ.get("ANKR_API_KEY") or ""}',
         'https://eon-rpc.horizenlabs.io/ethv1',
     ],
     chain_id=7332,
@@ -422,7 +431,7 @@ KavaRPC = Network(
 KlaytnRPC = Network(
     name='Klaytn',
     rpc=[
-        'https://rpc.ankr.com/klaytn',
+        f'https://rpc.ankr.com/klaytn/{os.environ.get("ANKR_API_KEY") or ""}',
         'https://klaytn.blockpi.network/v1/rpc/public',
         'https://1rpc.io/klay',
         'https://klaytn-pokt.nodies.app'
@@ -438,7 +447,7 @@ FantomRPC = Network(
     rpc=[
         'https://rpcapi.fantom.network',
         'https://endpoints.omniatech.io/v1/fantom/mainnet/public',
-        'https://rpc.ankr.com/fantom',
+        f'https://rpc.ankr.com/fantom/{os.environ.get("ANKR_API_KEY") or ""}',
     ],
     chain_id=250,
     eip1559_support=False,
@@ -506,7 +515,7 @@ GoerliRPC = Network(
     name='Goerli',
     rpc=[
         'https://endpoints.omniatech.io/v1/eth/goerli/public',
-        'https://rpc.ankr.com/eth_goerli',
+        f'https://rpc.ankr.com/eth_goerli/{os.environ.get("ANKR_API_KEY") or ""}',
         'https://eth-goerli.public.blastapi.io',
         'https://goerli.blockpi.network/v1/rpc/public'
     ],

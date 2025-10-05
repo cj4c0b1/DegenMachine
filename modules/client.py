@@ -1,4 +1,5 @@
 import asyncio
+import os
 import random
 
 from asyncio import sleep
@@ -46,7 +47,15 @@ class Client(Logger):
         self.session = ClientSession(connector=ProxyConnector.from_url(f"http://{proxy}",verify_ssl=False)
                                      if proxy else TCPConnector(verify_ssl=False))
         self.request_kwargs = {"proxy": f"http://{proxy}"} if proxy else {}
-        self.rpc = random.choice(network.rpc)
+        # Format RPC URL with Ankr API key if needed
+        rpc_url = random.choice(network.rpc)
+        if 'ankr.com' in rpc_url:
+            if not rpc_url.endswith('/'):
+                rpc_url = rpc_url.rstrip('/')
+            # Ensure the URL ends with the API key
+            if not rpc_url.endswith(os.environ.get("ANKR_API_KEY", "")):
+                rpc_url = f"{rpc_url}/{os.environ.get('ANKR_API_KEY', '')}"
+        self.rpc = rpc_url
         self.w3 = AsyncWeb3(AsyncHTTPProvider(self.rpc, request_kwargs=self.request_kwargs))
         self.account_name = str(account_name)
         self.private_key = private_key
@@ -175,21 +184,79 @@ class Client(Logger):
     async def get_token_balance(
             self, token_name: str = 'ETH', check_symbol: bool = True, check_native:bool = False
     ) -> [float, int, str]:
+        try:
+            self.logger_msg(
+                *self.acc_info,
+                msg=f"🔍 Checking {token_name} balance for {self.address} on {self.network.name}",
+                type_msg='info'
+            )
 
-        if not check_native:
-            if token_name != self.network.token:
-                contract = self.get_contract(TOKENS_PER_CHAIN[self.network.name][token_name])
+            if not check_native:
+                if token_name != self.network.token:
+                    try:
+                        token_address = TOKENS_PER_CHAIN[self.network.name].get(token_name)
+                        if not token_address:
+                            raise Exception(f"Token {token_name} not found in TOKENS_PER_CHAIN for {self.network.name}")
+                            
+                        self.logger_msg(
+                            *self.acc_info,
+                            msg=f"📝 Token {token_name} address: {token_address}",
+                            type_msg='info'
+                        )
+                        
+                        contract = self.get_contract(token_address)
+                        self.logger_msg(
+                            *self.acc_info,
+                            msg=f"📞 Calling balanceOf for {token_name} on {self.network.name}",
+                            type_msg='info'
+                        )
+                        
+                        amount_in_wei = await contract.functions.balanceOf(self.address).call()
+                        decimals = await contract.functions.decimals().call()
+                        
+                        self.logger_msg(
+                            *self.acc_info,
+                            msg=f"✅ {token_name} balance: {amount_in_wei / 10 ** decimals} (Wei: {amount_in_wei})",
+                            type_msg='success'
+                        )
 
-                amount_in_wei = await contract.functions.balanceOf(self.address).call()
-                decimals = await contract.functions.decimals().call()
+                        if check_symbol:
+                            symbol = await contract.functions.symbol().call()
+                            return amount_in_wei, amount_in_wei / 10 ** decimals, symbol
+                        return amount_in_wei, amount_in_wei / 10 ** decimals, ''
+                        
+                    except Exception as e:
+                        self.logger_msg(
+                            *self.acc_info,
+                            msg=f"❌ Error getting {token_name} balance: {str(e)}",
+                            type_msg='error'
+                        )
+                        raise
 
-                if check_symbol:
-                    symbol = await contract.functions.symbol().call()
-                    return amount_in_wei, amount_in_wei / 10 ** decimals, symbol
-                return amount_in_wei, amount_in_wei / 10 ** decimals, ''
-
-        amount_in_wei = await self.w3.eth.get_balance(self.address)
-        return amount_in_wei, amount_in_wei / 10 ** 18, self.network.token
+            # Handle native token balance
+            self.logger_msg(
+                *self.acc_info,
+                msg=f"🔄 Getting native {self.network.token} balance",
+                type_msg='info'
+            )
+            
+            amount_in_wei = await self.w3.eth.get_balance(self.address)
+            
+            self.logger_msg(
+                *self.acc_info,
+                msg=f"✅ Native {self.network.token} balance: {amount_in_wei / 10 ** 18} (Wei: {amount_in_wei})",
+                type_msg='success'
+            )
+            
+            return amount_in_wei, amount_in_wei / 10 ** 18, self.network.token
+            
+        except Exception as e:
+            self.logger_msg(
+                *self.acc_info,
+                msg=f"❌ Critical error in get_token_balance for {token_name}: {str(e)}",
+                type_msg='error'
+            )
+            raise
 
     async def check_and_get_eth(self, settings:tuple = None, bridge_mode:bool = False,
                                 initial_chain_id:int = 0) -> [float, int]:
@@ -227,7 +294,9 @@ class Client(Logger):
 
         wallet_balance = {k: await self.get_token_balance(k, False)
                           for k, v in TOKENS_PER_CHAIN[self.network.name].items()}
-        valid_wallet_balance = {k: v[1] for k, v in wallet_balance.items() if v[0] != 0}
+        valid_wallet_balance = {k: v[1] for k, v in wallet_balance.items() if v[0] > 0}
+        if not valid_wallet_balance:
+            raise RuntimeError("No tokens with non-zero balance found for swapping")
         eth_price = ETH_PRICE
 
         if 'ETH' in valid_wallet_balance:
@@ -391,8 +460,9 @@ class Client(Logger):
             raise RuntimeError(f'Gas calculating | {self.get_normalize_error(error)}')
 
         try:
-            singed_tx = self.w3.eth.account.sign_transaction(transaction, self.private_key)
-            tx_hash = await self.w3.eth.send_raw_transaction(singed_tx.rawTransaction)
+            signed_tx = self.w3.eth.account.sign_transaction(transaction, self.private_key)
+            # Use raw_transaction instead of rawTransaction for web3.py v7.13.0+
+            tx_hash = await self.w3.eth.send_raw_transaction(signed_tx.raw_transaction)
         except Exception as error:
             if self.get_normalize_error(error) == 'already known':
                 self.logger_msg(*self.acc_info, msg='RPC got error, but tx was send', type_msg='warning')
