@@ -26,7 +26,7 @@ venv/
 ENV/
 env/
 .env
-.venv
+.venv*
 .venv311/
 
 # IDE and Editor files
@@ -39,8 +39,26 @@ env/
 
 # Project specific
 general_settings.py
+config.py
 *.xlsx
 .windsurf/
+
+# Environment and sensitive data
+.env
+.env.*
+!.env.template
+
+# Local data
+data/
+!data/README.md
+
+# Logs
+*.log
+logs/
+
+# Local development overrides
+local_settings.py
+local_config.py
 
 # Logs and databases
 *.log

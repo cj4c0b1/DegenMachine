@@ -8,6 +8,41 @@
 > **Warning**  
 > By using DegenMachine, you accept all risks associated with DeFi operations, including but not limited to potential loss of assets, funds, or other valuables. Always test with small amounts first and use at your own risk.
 
+## 🔒 Security Notice
+
+This project handles sensitive information. Please follow these security practices:
+- Never commit your private keys or API keys to version control
+- Use environment variables for sensitive data
+- Always verify contract addresses and ABIs before interacting with them
+- Start with test networks before using mainnet
+- Keep your software dependencies up to date
+
+## 🚀 Quick Start
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/DegenMachine.git
+   cd DegenMachine
+   ```
+
+2. **Set up virtual environment**
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+
+3. **Configure environment**
+   ```bash
+   cp .env.template .env
+   # Edit .env with your configuration
+   ```
+
+4. **Run the application**
+   ```bash
+   python main.py
+   ```
+
 ## 📖 Overview
 
 DegenMachine is a powerful DeFi automation tool designed for advanced users who need to interact with multiple blockchain networks. The tool provides a comprehensive suite of features for managing cross-chain operations, including swaps, bridges, and liquidity management.
