@@ -1,0 +1,17 @@
+web3==5.31.4
+starknet-py==0.1.3a0
+aiohttp>=3.9.0
+aiohttp_socks>=0.8.4
+loguru>=0.7.2
+termcolor>=2.3.0
+questionary>=2.0.1
+hexbytes>=0.3.1
+mnemonic>=0.20
+ecdsa>=0.18.0
+pycryptodome>=3.19.0
+mpmath>=1.3.0
+sympy>=1.11.1
+telebot>=0.0.5
+msoffcrypto-tool>=5.1.1
+openpyxl>=3.1.2
+pandas>=2.0.0
