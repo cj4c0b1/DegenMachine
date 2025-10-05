@@ -144,10 +144,15 @@ TOKENS_PER_CHAIN = {
         "DAI"               : 0x00da114221cb83fa859dbdb4c44beeaa0bb37c7537ad5ae66fe5e0efd20e6eb3,
         "MEMCOIN"           : 0x123
     },
-    "Base":{
-        "ETH"               : "0x4200000000000000000000000000000000000006",
-        "WETH"              : "0x4200000000000000000000000000000000000006",
-        "USDbC"             : "0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA",
+    "Base": {
+        "ETH"               : "0x4200000000000000000000000000000000000006",  # Native ETH
+        "WETH"              : "0x4200000000000000000000000000000000000006",  # Wrapped ETH
+        "USDC"              : "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",  # Native USDC
+        "USDbC"             : "0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA",  # USD Base Coin (Bridged USDC)
+        "DAI"               : "0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb",  # Native DAI
+        "USDT"              : "0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb",  # Native USDT (same as DAI for now)
+        "cbETH"             : "0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22",  # Coinbase Wrapped Staked ETH
+        #"wstETH"            : "0xc1CBa3fCea344f92D9239c08C0568f6F2F0eEfD8"   # Lido Wrapped Staked ETH
     },
     "Linea":{
         "ETH"               : "0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f",

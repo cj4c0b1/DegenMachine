@@ -149,7 +149,7 @@ ZKFAIR_CLAIM_REFUND_PHASES = [1, 2, 3, 4]  # phases for refund claim
     ]
 """
 CLASSIC_ROUTES_MODULES_USING = [
-    ['okx_withdraw'],
-    ['bridge_layerswap', 'bridge_oribter', None],
-    ['stake_zkfair', 'zksync_rhino_mint_pro']
+    ['swap_openocean'],
+    ['swap_openocean'],
+    ['swap_openocean']
 ]
